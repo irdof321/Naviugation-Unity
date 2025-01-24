@@ -1,0 +1,83 @@
+# =========== Unity Generated Files ===========
+
+# Temporary files
+Temp/
+Obj/
+Build/
+Builds/
+Logs/
+MemoryCaptures/
+
+# User-specific files
+UserSettings/
+
+# Unity Cache
+Library/
+# Cache for lightmaps and occlusion culling
+LightmapsSnapshot/
+LightingData/
+
+# Asset Metadata
+*.cs.meta
+*.unity.meta
+
+# Crash reports
+sysinfo.txt
+
+# Unity Cloud Build
+[Aa]ssets/StreamingAssets/UnityCloud/
+
+# Package cache
+[Aa]ssets/Packages/
+Packages/manifest.json.meta
+
+# =========== Operating System Files ===========
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# =========== Version Control Files ===========
+
+# Visual Studio/JetBrains Rider
+.vscode/
+.idea/
+*.suo
+*.user
+*.userprefs
+*.csproj
+*.pidb
+*.unityproj
+*.booproj
+*.svd
+
+# =========== Exclude Build Artifacts ===========
+*.apk
+*.aab
+*.exe
+*.app
+*.unitypackage
+*.dll
+
+# =========== Unity Play Mode Cache ===========
+[Aa]ssets/StreamingAssets/*.cache
+[Aa]ssets/StreamingAssets/*.temp
+[Aa]ssets/StreamingAssets/*.log
+
+# =========== Exclude Large Assets ===========
+# Customize these paths if you have specific large folders/files to ignore
+[Aa]ssets/Textures/
+[Aa]ssets/Videos/
+[Aa]ssets/Audio/
+
+# Exclude backup files created by Unity
+*.bak
