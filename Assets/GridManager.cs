@@ -77,9 +77,7 @@ public class GridManager : MonoBehaviour
         {
             for (int dy = -1; dy <= 1; dy++)
             {
-                // Ignorer le node central et les diagonales
-                if (dx == 0 && dy == 0) continue;
-                if (dx != 0 && dy != 0) continue;
+
 
                 int checkX = x + dx;
                 int checkY = y + dy;

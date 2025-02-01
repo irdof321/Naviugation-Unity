@@ -8,6 +8,9 @@ public class ObjectMover : MonoBehaviour
     private GridManager gridManager;
     private List<Node> path;
 
+    //grid position
+    public Vector2Int gridPosition;
+
     void Start()
     {
         // Récupérer GridManager et Pathfinding
@@ -22,6 +25,10 @@ public class ObjectMover : MonoBehaviour
         {
             path = pathfinding.FindPath(transform.position, target.position);
         }
+
+        // Get position from grid
+        gridPosition = gridManager.GetGridPositionFromWorldPosition(transform.position);
+
     }
 
     void Update()
@@ -38,6 +45,8 @@ public class ObjectMover : MonoBehaviour
                 path.RemoveAt(0);
             }
         }
+
+        gridPosition = gridManager.GetGridPositionFromWorldPosition(transform.position);
     }
 
     public void MoveToNearestNode()

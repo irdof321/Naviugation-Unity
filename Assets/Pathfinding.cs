@@ -7,7 +7,7 @@ public class Pathfinding : MonoBehaviour
 
     public Node startNode; // Noeud de départ (pour debug)
     public Node targetNode; // Noeud d'arrivée (pour debug)
-    public List<Node> visitedNodes = new List<Node>(); // Noeuds visités
+    public PriorityQueue<Node> visitedNodes = new PriorityQueue<Node>(); // Noeuds à explorer
     public List<Node> finalPath = new List<Node>(); // Chemin final trouvé
 
     void Start()
@@ -25,29 +25,22 @@ public class Pathfinding : MonoBehaviour
         visitedNodes.Clear(); // Réinitialiser la liste des nœuds visités
         finalPath.Clear(); // Réinitialiser le chemin final
 
-        openList.Add(startNode);
+        startNode.gCost = 0;
+        startNode.hCost = GetDistance(startNode, targetNode);
+        visitedNodes.Enqueue(startNode, startNode.fCost);
 
-        while (openList.Count > 0)
+
+        while (visitedNodes.Count > 0)
         {
-            Node currentNode = openList[0];
-            for (int i = 1; i < openList.Count; i++)
-            {
-                if (openList[i].fCost < currentNode.fCost || (openList[i].fCost == currentNode.fCost && openList[i].hCost < currentNode.hCost))
-                {
-                    currentNode = openList[i];
-                }
-            }
+            Node currentNode = visitedNodes.Dequeue();
 
-            openList.Remove(currentNode);
-            closedList.Add(currentNode);
-            visitedNodes.Add(currentNode); // Ajoute aux nœuds visités
-
-            // Si on atteint la destination
             if (currentNode == targetNode)
             {
                 finalPath = RetracePath(startNode, targetNode);
                 return finalPath;
             }
+
+            closedList.Add(currentNode);
 
             foreach (Node neighbour in gridManager.GetNeighbours(currentNode))
             {
@@ -56,17 +49,16 @@ public class Pathfinding : MonoBehaviour
                     continue;
                 }
 
-                float newGCost = currentNode.gCost + GetDistance(currentNode, neighbour);
-                if (newGCost < neighbour.gCost || !openList.Contains(neighbour))
-                {
-                    neighbour.gCost = newGCost;
-                    neighbour.hCost = GetDistance(neighbour, targetNode);
-                    neighbour.parent = currentNode;
+                float g_tenative = currentNode.gCost + GetDistance(currentNode, neighbour);
+                float h_tenative = GetDistance(neighbour, targetNode);
+                float f_tenative = g_tenative + h_tenative;
 
-                    if (!openList.Contains(neighbour))
-                    {
-                        openList.Add(neighbour);
-                    }
+                if (visitedNodes.Contains(neighbour) && g_tenative >= neighbour.gCost)
+                {
+                    continue;
+                }
+                {
+                    continue;
                 }
             }
         }
